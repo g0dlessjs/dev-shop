@@ -34,11 +34,7 @@ export default async function ({ params }: Props) {
 
   return (
     <div>
-      <Title
-        title={`Productos de ${categoryName}`}
-        subtitle="Todos los productos"
-        className="mb-2"
-      />
+      <Title title={`${categoryName}`} subtitle={"Explora nuestra colección"} />
 
       <ProductGrid products={filteredProducts} />
     </div>
