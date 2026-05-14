@@ -9,7 +9,7 @@ export interface Product {
   tags: string[];
   title: string;
   type: ValidTypes;
-  gender: "men" | "women" | "kid" | "unisex";
+  gender: "men" | "women" | "kids" | "unisex";
 }
 
 export type ValidSizes = "XS" | "S" | "M" | "L" | "XL" | "XXL" | "XXXL";

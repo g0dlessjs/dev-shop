@@ -1,5 +1,7 @@
 import { Product } from "@/interfaces";
 import { ProductGridItem } from "./ProductGridItem";
+import { initialData } from "@/seed/seed";
+const products = initialData.products;
 
 interface Props {
   products: Product[];
