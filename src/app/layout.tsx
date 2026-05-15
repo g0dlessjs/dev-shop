@@ -4,7 +4,7 @@ import { inter } from "@/config/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "DevShop",
+  title: "Dev | Shop",
   description: "Una tienda virtual para comprar ropa y accesorios",
 };
 
