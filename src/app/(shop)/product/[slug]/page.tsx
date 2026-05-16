@@ -1,5 +1,10 @@
 import { titleFont } from "@/config/fonts";
-import { ProductSlideshow, QuantitySelector, SizeSelector } from "@/components";
+import {
+  ProductMobileSlideshow,
+  ProductSlideshow,
+  QuantitySelector,
+  SizeSelector,
+} from "@/components";
 import { notFound } from "next/navigation";
 import { initialData } from "@/seed/seed";
 
@@ -18,9 +23,20 @@ export default async function ProductPage({ params }: Props) {
 
   return (
     <div className="mt-5 mb-20 grid grid-cols-1 md:grid-cols-3 gap-3">
-      {/* Slideshow */}
+      {/* Slideshow mobile */}
+
+      {/* Slideshow desktop */}
       <div className="col-span-1 md:col-span-2 ">
-        <ProductSlideshow images={product.images} title={product.title} />
+        <ProductMobileSlideshow
+          images={product.images}
+          title={product.title}
+          className="block md:hidden"
+        />
+        <ProductSlideshow
+          images={product.images}
+          title={product.title}
+          className="hidden md:block"
+        />
       </div>
 
       {/* Detalles */}
@@ -43,7 +59,7 @@ export default async function ProductPage({ params }: Props) {
         <button className="btn-primary my-5 "> Agregar al carrito </button>
         {/* Description */}
         <h3 className="font-bold text-sm">Descripción</h3>
-        <p className="font-light text-sm">{product.description}</p>
+        <p className="font-light">{product.description}</p>
       </div>
     </div>
   );
