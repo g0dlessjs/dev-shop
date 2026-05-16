@@ -18,13 +18,19 @@ export const QuantitySelector = ({ quantity }: Props) => {
 
   return (
     <div className="flex">
-      <button onClick={() => onQuanityChanged(-1)}>
+      <button
+        onClick={() => onQuanityChanged(-1)}
+        className="hover:cursor-pointer"
+      >
         <IoRemoveCircleOutline size={30} />
       </button>
       <span className="w-15 mx-3 px-5 bg-gray-100 text-center rounded">
         {count}
       </span>
-      <button onClick={() => onQuanityChanged(1)}>
+      <button
+        onClick={() => onQuanityChanged(1)}
+        className="hover:cursor-pointer"
+      >
         <IoAddCircleOutline size={30} />
       </button>
     </div>
