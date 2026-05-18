@@ -6,7 +6,7 @@ export default function ShopLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="min-h-screen bg-linear-to-b from-gray-200 via-white to-gray-200">
+    <main className="min-h-screen bg-linear-to-b from-gray-100 via-white to-gray-100">
       <TopMenu />
       <Sidebar />
       <div className="px-0 sm:px-10">{children}</div>
