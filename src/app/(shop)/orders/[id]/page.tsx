@@ -1,7 +1,9 @@
 import { Title } from "@/components";
 import { initialData } from "@/seed/seed";
+import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
+import { IoCardOutline } from "react-icons/io5";
 
 const productIntCart = [
   initialData.products[0],
@@ -10,24 +12,34 @@ const productIntCart = [
 ];
 
 interface Props {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>;
 }
 
-export default function ({ params }: Props) {
+export default async function ({ params }: Props) {
+  const { id } = await params;
+
+  // TODO:
+  // Redirect
+
   return (
     <div className="flex justify-center items-center mb-72 px-10 sm:px-0">
       <div className="flex flex-col w-[1000px]">
-        <Title title="Verificar orden" />
+        <Title title={`Orden #${id}`} />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
           {/* Carrito */}
           <div className="flex flex-col mt-5">
-            <span className="text-xl">Ajustar elementos</span>
-            <Link href="/cart" className="underline mb-5 hover:cursor-pointer">
-              Editar carrito aqui
-            </Link>
+            <div
+              className={clsx(
+                "flex items-center rounded-lg py-2 px-3.5 text-xs font-bold text-white mb-5",
+                {
+                  "bg-green-700": true,
+                },
+              )}
+            >
+              <IoCardOutline size={20} />
+              <span className="ml-2"> Orden pagada</span>
+            </div>
 
             {/* Producto del carrito */}
 
@@ -71,7 +83,7 @@ export default function ({ params }: Props) {
 
             <div className="grid grid-cols-2">
               <span>N. Productos</span>
-              <span className="text-right">3</span>
+              <span className="text-right">3 Articulos</span>
 
               <span>Subtotal</span>
               <span className="text-right">$ 100</span>
@@ -83,12 +95,17 @@ export default function ({ params }: Props) {
               <span className="mt-5 text-2xl text-right">$ 100</span>
             </div>
             <div className="mt-5 mb-2 w-full">
-              <Link
-                href="/orders/123456"
-                className="flex btn-primary justify-center"
+              <div
+                className={clsx(
+                  "flex items-center rounded-lg py-2 px-3.5 text-xs font-bold text-white mb-5",
+                  {
+                    "bg-green-700": true,
+                  },
+                )}
               >
-                Colocar orden
-              </Link>
+                <IoCardOutline size={30} />
+                <span className="ml-2"> Orden pagada</span>
+              </div>
             </div>
           </div>
         </div>
