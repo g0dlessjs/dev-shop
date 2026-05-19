@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import clsx from "clsx";
+
 import {
   IoCloseOutline,
   IoLogInOutline,
@@ -10,107 +12,196 @@ import {
   IoSearchOutline,
   IoShirtOutline,
   IoTicketOutline,
+  IoChevronForwardOutline,
 } from "react-icons/io5";
 
 import { useUIStore } from "@/store";
-import clsx from "clsx";
+import { titleFont } from "@/config/fonts";
 
 export const Sidebar = () => {
   const isSideMenuOpen = useUIStore((state) => state.isSideMenuOpen);
   const closeSideMenu = useUIStore((state) => state.closeSideMenu);
+  const handleNavigation = () => {
+    closeSideMenu();
+  };
+
+  const menuLinkClasses = clsx(
+    "flex items-center justify-between",
+    "w-full px-4 py-3 rounded-2xl",
+    "transition-all duration-200",
+    "hover:bg-gray-100 hover:translate-x-1",
+    "group",
+  );
 
   return (
-    <div>
-      {/* Background black */}
+    <>
+      {/* Background Overlay */}
       {isSideMenuOpen && (
-        <div className="fixed top-0 left-0 w-screen h-screen z-10 bg-black opacity-30" />
+        <div className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm fade-in" />
       )}
 
-      {/* Blur */}
+      {/* Click Outside */}
       {isSideMenuOpen && (
-        <div
-          onClick={() => closeSideMenu()}
-          className="fade-in fixed top-0 left-0 w-screen h-screen z-10 backdrop-filter backdrop-blur-md"
-        />
+        <div onClick={closeSideMenu} className="fixed inset-0 z-40" />
       )}
 
-      {/* SideMenu */}
-      <nav
+      {/* Sidebar */}
+      <aside
         className={clsx(
-          "fixed p-5 right-0 top-0 w-[500px] h-screen bg-white z-20 shadow-2xl transform transition-all duration-300",
-          { "translate-x-full": !isSideMenuOpen },
+          "fixed top-0 right-0 z-50",
+          "h-screen w-full sm:w-[420px]",
+          "bg-white shadow-2xl",
+          "transition-transform duration-300 ease-in-out",
+          "border-l border-gray-200",
+          "flex flex-col",
+          {
+            "translate-x-full": !isSideMenuOpen,
+            "translate-x-0": isSideMenuOpen,
+          },
         )}
       >
-        <IoCloseOutline
-          size={50}
-          className="absolute top-5 right-5 cursor-pointer"
-          onClick={() => closeSideMenu()}
-        />
+        {/* Header */}
+        <div className="flex items-center justify-between px-6 h-20 border-b border-gray-100">
+          <div className="text-2xl">
+            <span className={clsx(titleFont.className, "font-bold")}>Dev</span>
 
-        <div className="relative mt-14">
-          <IoSearchOutline size={20} className="absolute top-2 left-2" />
-          <input
-            type="text"
-            placeholder="Buscar"
-            className="w-full bg-gray-50 rounded pl-10 py-1 pr-10 border-b-2 text-xl border-gray-200 focus:outline-none focus:border-blue-500"
-          />
+            <span className="font-light"> | Menu</span>
+          </div>
+
+          <button
+            onClick={closeSideMenu}
+            className="p-2 rounded-full transition-all hover:bg-gray-100 cursor-pointer"
+          >
+            <IoCloseOutline size={32} />
+          </button>
         </div>
 
-        {/* Menú */}
-        <Link
-          href="/"
-          className="flex items-center mt-10 p-2 hover:bg-gray-100 roundes transition-all"
-        >
-          <IoPersonOutline size={30} />
-          <span className="ml-3 text-xl">Perfil</span>
-        </Link>
-        <Link
-          href="/"
-          className="flex items-center mt-10 p-2 hover:bg-gray-100 roundes transition-all"
-        >
-          <IoTicketOutline size={30} />
-          <span className="ml-3 text-xl">Ordenes</span>
-        </Link>
-        <Link
-          href="/"
-          className="flex items-center mt-10 p-2 hover:bg-gray-100 roundes transition-all"
-        >
-          <IoLogInOutline size={30} />
-          <span className="ml-3 text-xl">Ingresar</span>
-        </Link>
-        <Link
-          href="/"
-          className="flex items-center mt-10 p-2 hover:bg-gray-100 roundes transition-all"
-        >
-          <IoLogOutOutline size={30} />
-          <span className="ml-3 text-xl">Salir</span>
-        </Link>
+        {/* Search */}
+        <div className="px-6 py-5 border-b border-gray-100">
+          <div className="relative">
+            <IoSearchOutline
+              size={20}
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+            />
 
-        {/* Line Separator */}
-        <div className="w-full h-px bg-gray-200 my-10" />
+            <input
+              type="text"
+              placeholder="Buscar productos..."
+              className={clsx(
+                "w-full",
+                "py-3 pl-11 pr-4",
+                "rounded-2xl",
+                "bg-gray-100",
+                "border border-transparent",
+                "outline-none",
+                "transition-all",
+                "focus:border-black",
+                "focus:bg-white",
+              )}
+            />
+          </div>
+        </div>
 
-        <Link
-          href="/"
-          className="flex items-center mt-10 p-2 hover:bg-gray-100 roundes transition-all"
-        >
-          <IoShirtOutline size={30} />
-          <span className="ml-3 text-xl">Productos</span>
-        </Link>
-        <Link
-          href="/"
-          className="flex items-center mt-10 p-2 hover:bg-gray-100 roundes transition-all"
-        >
-          <IoTicketOutline size={30} />
-          <span className="ml-3 text-xl">Ordenes</span>
-        </Link>
-        <Link
-          href="/"
-          className="flex items-center mt-10 p-2 hover:bg-gray-100 roundes transition-all"
-        >
-          <IoPeopleOutline size={30} />
-          <span className="ml-3 text-xl">Usuarios</span>
-        </Link>
-      </nav>
-    </div>
+        {/* Content */}
+        <div className="flex-1 overflow-y-auto px-4 py-6">
+          {/* User Section */}
+          <div className="mb-8">
+            <span className="px-4 text-xs font-semibold tracking-widest text-gray-400 uppercase">
+              Cuenta
+            </span>
+
+            <div className="mt-3 flex flex-col gap-2">
+              <Link
+                onClick={handleNavigation}
+                href="/"
+                className={menuLinkClasses}
+              >
+                <div className="flex items-center">
+                  <IoPersonOutline size={22} />
+
+                  <span className="ml-4 font-medium">Perfil</span>
+                </div>
+
+                <IoChevronForwardOutline className="text-gray-400 group-hover:translate-x-1 transition-transform" />
+              </Link>
+
+              <Link href="/" className={menuLinkClasses}>
+                <div className="flex items-center">
+                  <IoTicketOutline size={22} />
+
+                  <span className="ml-4 font-medium">Mis órdenes</span>
+                </div>
+
+                <IoChevronForwardOutline className="text-gray-400 group-hover:translate-x-1 transition-transform" />
+              </Link>
+
+              <Link href="/" className={menuLinkClasses}>
+                <div className="flex items-center">
+                  <IoLogInOutline size={22} />
+
+                  <span className="ml-4 font-medium">Ingresar</span>
+                </div>
+
+                <IoChevronForwardOutline className="text-gray-400 group-hover:translate-x-1 transition-transform" />
+              </Link>
+
+              <Link href="/" className={menuLinkClasses}>
+                <div className="flex items-center">
+                  <IoLogOutOutline size={22} />
+
+                  <span className="ml-4 font-medium">Cerrar sesión</span>
+                </div>
+
+                <IoChevronForwardOutline className="text-gray-400 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Admin Section */}
+          <div>
+            <span className="px-4 text-xs font-semibold tracking-widest text-gray-400 uppercase">
+              Administración
+            </span>
+
+            <div className="mt-3 flex flex-col gap-2">
+              <Link href="/" className={menuLinkClasses}>
+                <div className="flex items-center">
+                  <IoShirtOutline size={22} />
+
+                  <span className="ml-4 font-medium">Productos</span>
+                </div>
+
+                <IoChevronForwardOutline className="text-gray-400 group-hover:translate-x-1 transition-transform" />
+              </Link>
+
+              <Link href="/" className={menuLinkClasses}>
+                <div className="flex items-center">
+                  <IoTicketOutline size={22} />
+
+                  <span className="ml-4 font-medium">Órdenes</span>
+                </div>
+
+                <IoChevronForwardOutline className="text-gray-400 group-hover:translate-x-1 transition-transform" />
+              </Link>
+
+              <Link href="/" className={menuLinkClasses}>
+                <div className="flex items-center">
+                  <IoPeopleOutline size={22} />
+
+                  <span className="ml-4 font-medium">Usuarios</span>
+                </div>
+
+                <IoChevronForwardOutline className="text-gray-400 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="border-t border-gray-100 px-6 py-4">
+          <p className="text-xs text-center text-gray-400">© 2026 DevShop</p>
+        </div>
+      </aside>
+    </>
   );
 };

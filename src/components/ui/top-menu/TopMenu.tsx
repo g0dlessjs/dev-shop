@@ -1,69 +1,118 @@
 "use client";
 
-import { titleFont } from "@/config/fonts";
 import Link from "next/link";
-import { IoCartOutline, IoSearchOutline } from "react-icons/io5";
+import clsx from "clsx";
+
+import { titleFont } from "@/config/fonts";
 import { useUIStore } from "@/store";
+
+import { IoCartOutline, IoSearchOutline, IoMenuOutline } from "react-icons/io5";
 
 export const TopMenu = () => {
   const openSideMenu = useUIStore((state) => state.openSideMenu);
 
   return (
-    <nav className="flex px-5 justify-between items-center w-full">
-      {/* Logo */}
-      <div>
-        <Link href="/">
-          <span className={`${titleFont.className} antialiased font-bold`}>
+    <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/80 backdrop-blur-md">
+      <nav className="max-w-7xl mx-auto h-16 px-6 flex items-center justify-between">
+        {/* Logo */}
+        <Link
+          href="/"
+          className="flex items-center text-2xl transition-opacity hover:opacity-80"
+        >
+          <span className={clsx(titleFont.className, "font-bold antialiased")}>
             Dev
           </span>
-          <span> | Shop</span>
-        </Link>
-      </div>
 
-      {/* Center Menu */}
-      <div className="hidden sm:block">
-        <Link
-          className="m-2 p-2 rounded-md tansition-all hover:bg-gray-100"
-          href="/category/men"
-        >
-          Hombre
-        </Link>
-        <Link
-          className="m-2 p-2 rounded-md tansition-all hover:bg-gray-100"
-          href="/category/women"
-        >
-          Mujer
-        </Link>
-        <Link
-          className="m-2 p-2 rounded-md tansition-all hover:bg-gray-100"
-          href="/category/kids"
-        >
-          Niños
-        </Link>
-      </div>
-      {/* Searc, Cart, Menu */}
-
-      <div className="flex items-center">
-        <Link href="/search" className="mx-2">
-          <IoSearchOutline className="w-5 h-5" />
+          <span className="ml-1 font-light">| Shop</span>
         </Link>
 
-        <Link href="/cart" className="mx-2">
-          <div className="relative">
-            <span className="absolute text-xs rounded-full  px-1 font-bold -top-2 bg-blue-700 text-white -right-2">
+        {/* Center Menu */}
+        <div className="hidden md:flex items-center gap-2">
+          <Link
+            href="/category/men"
+            className="px-4 py-2 rounded-full text-sm font-medium text-gray-700 transition-all hover:bg-gray-100 hover:text-black"
+          >
+            Hombre
+          </Link>
+
+          <Link
+            href="/category/women"
+            className="px-4 py-2 rounded-full text-sm font-medium text-gray-700 transition-all hover:bg-gray-100 hover:text-black"
+          >
+            Mujer
+          </Link>
+
+          <Link
+            href="/category/kids"
+            className="px-4 py-2 rounded-full text-sm font-medium text-gray-700 transition-all hover:bg-gray-100 hover:text-black"
+          >
+            Niños
+          </Link>
+        </div>
+
+        {/* Right Actions */}
+        <div className="flex items-center gap-2">
+          {/* Search */}
+          <Link
+            href="/search"
+            className="p-2 rounded-full transition-all hover:bg-gray-100"
+          >
+            <IoSearchOutline className="w-5 h-5 text-gray-700" />
+          </Link>
+
+          {/* Cart */}
+          <Link
+            href="/cart"
+            className="relative p-2 rounded-full transition-all hover:bg-gray-100"
+          >
+            <span
+              className={clsx(
+                "absolute",
+                "-top-1",
+                "-right-1",
+                "min-w-[18px]",
+                "h-[18px]",
+                "px-1",
+                "flex",
+                "items-center",
+                "justify-center",
+                "rounded-full",
+                "bg-black",
+                "text-white",
+                "text-[10px]",
+                "font-bold",
+              )}
+            >
               3
             </span>
-            <IoCartOutline className="w-5 h-5" />
-          </div>
-        </Link>
 
-        <button
-          onClick={() => openSideMenu()}
-          className="m-2 p-2 rounded-md transition-all hover:bg-gray-100 hover:cursor-pointer"
-        >
-          Menú
-        </button>
-      </div>
-    </nav>
+            <IoCartOutline className="w-5 h-5 text-gray-700" />
+          </Link>
+
+          {/* Menu Button */}
+          <button
+            onClick={openSideMenu}
+            className={clsx(
+              "ml-2",
+              "flex",
+              "items-center",
+              "gap-2",
+              "px-4",
+              "py-2",
+              "rounded-full",
+              "border",
+              "border-gray-200",
+              "transition-all",
+              "hover:bg-gray-100",
+              "cursor-pointer",
+            )}
+          >
+            <IoMenuOutline className="w-5 h-5" />
+
+            <span className="hidden sm:block text-sm font-medium">Menú</span>
+          </button>
+        </div>
+      </nav>
+    </header>
   );
 };
