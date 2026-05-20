@@ -10,6 +10,12 @@ import { IoCartOutline, IoSearchOutline, IoMenuOutline } from "react-icons/io5";
 
 export const TopMenu = () => {
   const openSideMenu = useUIStore((state) => state.openSideMenu);
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/80 backdrop-blur-md">
@@ -18,6 +24,7 @@ export const TopMenu = () => {
         <Link
           href="/"
           className="flex items-center text-2xl transition-opacity hover:opacity-80"
+          onClick={scrollToTop}
         >
           <span className={clsx(titleFont.className, "font-bold antialiased")}>
             Dev

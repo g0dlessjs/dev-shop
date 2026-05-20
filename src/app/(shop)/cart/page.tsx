@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { QuantitySelector, Title } from "@/components";
 import { initialData } from "@/seed/seed";
 import { Product } from "@/interfaces";
+import clsx from "clsx";
 
 const productIntCart: Product[] = [
   initialData.products[0],
@@ -34,7 +35,7 @@ export default function CartPage() {
         <section className="xl:col-span-2">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h2 className="text-2xl font-semibold">Tus productos</h2>
+              <h2 className="text-xl font-semibold">Tus productos</h2>
 
               <span className="text-sm text-gray-500">
                 {productIntCart.length} productos en el carrito
@@ -43,15 +44,16 @@ export default function CartPage() {
 
             <Link
               href="/"
-              className="
-                text-sm
-                font-medium
-                underline-offset-4
-                hover:underline
-                text-gray-600
-                hover:text-black
-                transition-colors
-              "
+              className={clsx(
+                "text-sm",
+                "font-medium",
+                "underline-offset-4",
+                "hover:underline",
+                "text-gray-600",
+                "hover:text-black",
+                "transition-colors",
+                "cursor-pointer",
+              )}
             >
               Seguir comprando
             </Link>

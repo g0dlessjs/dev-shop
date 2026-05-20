@@ -12,7 +12,13 @@ import {
   IoSearchOutline,
   IoShirtOutline,
   IoTicketOutline,
+  IoManOutline,
+  IoWomanOutline,
+  IoBodyOutline,
   IoChevronForwardOutline,
+  IoMan,
+  IoWoman,
+  IoBody,
 } from "react-icons/io5";
 
 import { useUIStore } from "@/store";
@@ -104,6 +110,77 @@ export const Sidebar = () => {
 
         {/* Content */}
         <div className="flex-1 overflow-y-auto px-4 py-6">
+          {/* Categories */}
+          <div className="mb-8">
+            <span className="px-4 text-xs font-semibold tracking-[0.2em] text-gray-400 uppercase">
+              Categorías
+            </span>
+
+            <div className="mt-4 flex flex-col gap-2">
+              <Link
+                onClick={handleNavigation}
+                href="/category/men"
+                className={`${menuLinkClasses} group`}
+              >
+                <div className="flex items-center gap-4">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gray-100 text-gray-700 transition-colors group-hover:bg-black group-hover:text-white">
+                    <IoMan size={22} />
+                  </div>
+
+                  <div className="flex flex-col">
+                    <span className="font-medium text-gray-900">Hombre</span>
+                    <span className="text-xs text-gray-500">
+                      Moda y accesorios
+                    </span>
+                  </div>
+                </div>
+
+                <IoChevronForwardOutline className="text-gray-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-black" />
+              </Link>
+
+              <Link
+                onClick={handleNavigation}
+                href="/category/women"
+                className={`${menuLinkClasses} group`}
+              >
+                <div className="flex items-center gap-4">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-pink-50 text-pink-500 transition-colors group-hover:bg-pink-500 group-hover:text-white">
+                    <IoWoman size={22} />
+                  </div>
+
+                  <div className="flex flex-col">
+                    <span className="font-medium text-gray-900">Mujer</span>
+                    <span className="text-xs text-gray-500">
+                      Tendencias y estilo
+                    </span>
+                  </div>
+                </div>
+
+                <IoChevronForwardOutline className="text-gray-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-black" />
+              </Link>
+
+              <Link
+                onClick={handleNavigation}
+                href="/category/kids"
+                className={`${menuLinkClasses} group`}
+              >
+                <div className="flex items-center gap-4">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-500 transition-colors group-hover:bg-blue-500 group-hover:text-white">
+                    <IoBody size={22} />
+                  </div>
+
+                  <div className="flex flex-col">
+                    <span className="font-medium text-gray-900">Niños</span>
+                    <span className="text-xs text-gray-500">
+                      Comodidad y diversión
+                    </span>
+                  </div>
+                </div>
+
+                <IoChevronForwardOutline className="text-gray-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-black" />
+              </Link>
+            </div>
+          </div>
           {/* User Section */}
           <div className="mb-8">
             <span className="px-4 text-xs font-semibold tracking-widest text-gray-400 uppercase">
