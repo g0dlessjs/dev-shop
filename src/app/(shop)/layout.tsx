@@ -17,7 +17,7 @@ export default function ShopLayout({
       <section className="relative">
         {/* Decorative background blur */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-gray-200/30 blur-3xl rounded-full" />
+          <div className="absolute top-10 left-1/2 -translate-x-1/2 w-175 h-175 bg-gray-200/30 blur-3xl rounded-full" />
         </div>
 
         {/* Page Content */}
