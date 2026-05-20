@@ -5,32 +5,35 @@ import { titleFont } from "@/config/fonts";
 
 export default function NewAccountPage() {
   return (
-    <main
+    <div
       className={clsx(
-        "min-h-screen",
         "flex",
         "items-center",
         "justify-center",
-        "px-6"
+        "bg-white",
+        "px-4",
+        "py-10",
+        "sm:px-6"
       )}
     >
       <div
         className={clsx(
           "w-full",
           "max-w-md",
-          "rounded-4xl",
+          "rounded-[28px]",
           "bg-white",
-          "p-10",
-          "shadow-[0_20px_60px_rgba(0,0,0,0.08)]",
           "border",
-          "border-gray-100"
+          "border-gray-200",
+          "shadow-[0_15px_60px_rgba(0,0,0,0.15)]",
+          "p-6",
+          "sm:p-10"
         )}
       >
         {/* Header */}
-        <div className="mb-10 text-center">
+        <div className="mb-8 text-center sm:mb-10">
           <span
             className={clsx(
-              "text-xs",
+              "text-[11px]",
               "uppercase",
               "tracking-[0.35em]",
               "text-gray-400"
@@ -43,16 +46,16 @@ export default function NewAccountPage() {
             className={clsx(
               titleFont.className,
               "mt-3",
-              "text-5xl",
+              "text-4xl",
+              "sm:text-5xl",
               "font-bold",
-              "tracking-tight",
-              "text-black"
+              "tracking-tight"
             )}
           >
             Crear cuenta
           </h1>
 
-          <p className="mt-3 text-gray-500">
+          <p className="mt-3 text-sm sm:text-base text-gray-500">
             Crea una cuenta para comenzar a comprar.
           </p>
         </div>
@@ -74,8 +77,9 @@ export default function NewAccountPage() {
                 "border",
                 "border-gray-200",
                 "bg-gray-50",
-                "px-5",
-                "py-4",
+                "px-4",
+                "py-3.5",
+                "text-sm",
                 "outline-none",
                 "transition-all",
                 "placeholder:text-gray-400",
@@ -99,8 +103,9 @@ export default function NewAccountPage() {
                 "border",
                 "border-gray-200",
                 "bg-gray-50",
-                "px-5",
-                "py-4",
+                "px-4",
+                "py-3.5",
+                "text-sm",
                 "outline-none",
                 "transition-all",
                 "placeholder:text-gray-400",
@@ -124,8 +129,9 @@ export default function NewAccountPage() {
                 "border",
                 "border-gray-200",
                 "bg-gray-50",
-                "px-5",
-                "py-4",
+                "px-4",
+                "py-3.5",
+                "text-sm",
                 "outline-none",
                 "transition-all",
                 "placeholder:text-gray-400",
@@ -137,17 +143,17 @@ export default function NewAccountPage() {
 
           <button
             className={clsx(
-              "mt-3",
+              "mt-2",
               "rounded-2xl",
               "bg-black",
-              "py-4",
+              "py-3.5",
+              "text-sm",
               "font-semibold",
               "text-white",
               "transition-all",
               "duration-300",
-              "hover:scale-[1.01]",
               "hover:bg-neutral-800",
-              "active:scale-[0.99]"
+              "active:scale-[0.98]"
             )}
           >
             Crear cuenta
@@ -155,7 +161,7 @@ export default function NewAccountPage() {
         </form>
 
         {/* Divider */}
-        <div className="my-8 flex items-center gap-4">
+        <div className="my-7 flex items-center gap-4">
           <div className="h-px flex-1 bg-gray-200" />
 
           <span className="text-sm text-gray-400">
@@ -175,7 +181,8 @@ export default function NewAccountPage() {
             "border",
             "border-gray-200",
             "bg-white",
-            "py-4",
+            "py-3.5",
+            "text-sm",
             "font-semibold",
             "transition-all",
             "duration-300",
@@ -185,6 +192,6 @@ export default function NewAccountPage() {
           Ya tengo una cuenta
         </Link>
       </div>
-    </main>
+    </div>
   );
 }
